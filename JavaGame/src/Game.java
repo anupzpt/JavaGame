@@ -16,6 +16,18 @@ public class Game extends JFrame {
         container.setBackground(new Color(64, 110, 64));
         container.setBorder(new EmptyBorder(5,5,5,5));
         container.setLayout(null);
+
+        //title set
+        JLabel Title = new JLabel("Whack A Mole");
+        Title.setForeground(new Color(225, 192, 23, 255));
+        Title.setHorizontalAlignment(SwingConstants.CENTER);
+        Title.setFont(new Font("Century Gothic",Font.BOLD,20));
+        Title.setBounds(0,10,602,47);
+
+        //add title
+        container.add(Title);
+
+        //replaces the content pane of the frame with the specified container
         setContentPane(container);
     }
 }
