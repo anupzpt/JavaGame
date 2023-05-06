@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Game extends JFrame {
     JPanel panel =new JPanel();
-    JLabel[] holes = new JLabel[12];
+    JLabel[] holes = new JLabel[16];
     void Game(){
         //creates frame
         setTitle("Whack A Mole");
