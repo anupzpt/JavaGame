@@ -3,8 +3,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Game extends JFrame {
+    JPanel container = new JPanel();
     JPanel panel =new JPanel();
     JLabel[] holes = new JLabel[16];
+    private ImageIcon loadImage(String path){
+        Image image = new ImageIcon(this.getClass().getResource(path)).getImage();
+        Image scaled = image.getScaledInstance(132,132 , Image.SCALE_SMOOTH);
+        return new ImageIcon(scaled);
+    }
     void Game(){
         //creates frame
         setTitle("Whack A Mole");
@@ -14,7 +20,6 @@ public class Game extends JFrame {
         setVisible(true);
 
         //background or container for the game
-        JPanel container = new JPanel();
         container.setBackground(new Color(64, 110, 64));
         container.setBorder(new EmptyBorder(5,5,5,5));
         container.setLayout(null);
@@ -24,17 +29,27 @@ public class Game extends JFrame {
         Title.setForeground(new Color(225, 192, 23, 255));
         Title.setHorizontalAlignment(SwingConstants.CENTER);
         Title.setFont(new Font("Century Gothic",Font.BOLD,20));
-        Title.setBounds(0,10,602,47);
+        Title.setBounds(0,15,602,47);
 
         //add title
         container.add(Title);
 
+        //function call
+        panel();
+        holes();
+
+        //replaces the content pane of the frame with the specified container
+        setContentPane(container);
+    }
+    void panel(){
         //panel for hole
         panel.setBackground(new Color(76, 148, 76));
-        panel.setBounds(32, 105, 530, 546);
+        panel.setBounds(32, 105, 528, 528);
         panel.setLayout(null);
         container.add(panel);
+    }
 
+    void holes(){
         //create hole
         holes[0] = new JLabel("0");
         holes[0].setName("0");
@@ -116,8 +131,9 @@ public class Game extends JFrame {
         holes[15].setBounds(396, 0, 132, 132);
         panel.add(holes[15]);
 
-        //replaces the content pane of the frame with the specified container
-        setContentPane(container);
+        for(int i = 0; i < 16; i++){
+            holes[i].setIcon(loadImage("/moleIn.png"));
+        }
     }
 }
 
