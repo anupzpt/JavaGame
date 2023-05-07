@@ -37,7 +37,7 @@ public class Game extends JFrame {
         //function call
         panel();
         holes();
-        
+
         //replaces the content pane of the frame with the specified container
         setContentPane(container);
     }
