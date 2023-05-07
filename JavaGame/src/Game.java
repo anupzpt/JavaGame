@@ -6,7 +6,6 @@ public class Game extends JFrame {
     JPanel container = new JPanel();
     JPanel panel =new JPanel();
     JLabel[] holes = new JLabel[16];
-
     private ImageIcon loadImage(String path){
         Image image = new ImageIcon(this.getClass().getResource(path)).getImage();
         Image scaled = image.getScaledInstance(132,132 , Image.SCALE_SMOOTH);
@@ -38,6 +37,7 @@ public class Game extends JFrame {
         //function call
         panel();
         holes();
+        
         //replaces the content pane of the frame with the specified container
         setContentPane(container);
     }
