@@ -1,16 +1,26 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import javax.swing.ImageIcon;
+
 
 public class Game extends JFrame {
-    JPanel container = new JPanel();
+    JPanel container = new JPanel(){
+        protected void paintComponent(Graphics g){
+            super.paintComponents(g);
+            Image image = new ImageIcon(this.getClass().getResource("/Background.png")).getImage();
+            g.drawImage(image,0,0,this.getWidth(),this.getHeight(),this);
+        }
+    };
     JPanel panel =new JPanel();
     JLabel[] holes = new JLabel[16];
+
     private ImageIcon loadImage(String path){
         Image image = new ImageIcon(this.getClass().getResource(path)).getImage();
         Image scaled = image.getScaledInstance(132,132 , Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
     }
+
     void Game(){
         //creates frame
         setTitle("Whack A Mole");
@@ -20,15 +30,16 @@ public class Game extends JFrame {
         setVisible(true);
 
         //background or container for the game
-        container.setBackground(new Color(64, 110, 64));
+        container.setBackground(Color.GREEN);
         container.setBorder(new EmptyBorder(5,5,5,5));
         container.setLayout(null);
+
 
         //title set
         JLabel Title = new JLabel("Whack A Mole");
         Title.setForeground(new Color(225, 192, 23, 255));
         Title.setHorizontalAlignment(SwingConstants.CENTER);
-        Title.setFont(new Font("Century Gothic",Font.BOLD,20));
+        Title.setFont(new Font("Century Gothic",Font.BOLD,50));
         Title.setBounds(0,15,602,47);
 
         //add title
