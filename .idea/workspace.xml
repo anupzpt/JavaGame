@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6219122a-b102-45a5-a7f1-700a252b8829" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/JavaGame/out/production/JavaGame/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/JavaGame/out/production/JavaGame/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaGame/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaGame/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaGame/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JavaGame/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +24,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/JavaGame-main/JavaGame",
+    "last_opened_file_path": "F:/connector",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -36,6 +40,8 @@
       <option name="presentableId" value="Default" />
       <updated>1683378611599</updated>
       <workItem from="1683378611615" duration="104000" />
+      <workItem from="1683426293350" duration="183000" />
+      <workItem from="1683426687615" duration="816000" />
     </task>
     <servers />
   </component>
