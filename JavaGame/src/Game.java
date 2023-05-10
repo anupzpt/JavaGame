@@ -1,15 +1,11 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import javax.swing.ImageIcon;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.Random;
 import java.lang.String;
-import java.awt.Toolkit;
-import java.awt.Cursor;
-import java.awt.Point;
 import javax.swing.JOptionPane;
 
 public class Game extends JFrame implements ActionListener{
@@ -80,7 +76,7 @@ public class Game extends JFrame implements ActionListener{
         setContentPane(container2);
 
     }
-    void initialGame()
+    void initialGame ()
     {
         //creates frame
         setTitle("!!! Whack A Mole !!!");
@@ -131,12 +127,31 @@ public class Game extends JFrame implements ActionListener{
         lblTimeLeft.setBounds(232,75,144,33);
         container.add(lblTimeLeft);
 
-        lblHighscore = new JLabel("Highscore: 0");
-        lblHighscore.setHorizontalAlignment(SwingConstants.TRAILING);
-        lblHighscore.setForeground(new Color(135,206,250));
-        lblHighscore.setFont(new Font("Cambria", Font.BOLD, 20));
-        lblHighscore.setBounds(433, 18, 134, 33);
-        container.add(lblHighscore);
+        try {
+            FileReader file = new FileReader("Score.txt");
+            BufferedReader reader = new BufferedReader(new FileReader("Score.txt"));
+            String fileData = "";
+
+            String line = reader.readLine();
+            while (line != null) {
+                fileData += line + "\n";
+                line = reader.readLine();
+            }
+            reader.close();
+            lblHighscore = new JLabel(fileData);
+            lblHighscore.setHorizontalAlignment(SwingConstants.TRAILING);
+            lblHighscore.setForeground(new Color(135,206,250));
+            lblHighscore.setFont(new Font("Cambria", Font.BOLD, 20));
+            lblHighscore.setBounds(433, 18, 134, 33);
+            container.add(lblHighscore);
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+
+
+
         //add title
         container.add(Title);
         setVisible(true);
@@ -161,7 +176,11 @@ public class Game extends JFrame implements ActionListener{
                 public void mouseClicked(MouseEvent e) {
                     JLabel lbl =(JLabel)e.getSource();
                     int id =Integer.parseInt(lbl.getName());
-                    hit(id);
+                    try {
+                        hit(id);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             });
         }
@@ -185,8 +204,11 @@ public class Game extends JFrame implements ActionListener{
             }
         });
     }
-    void hit(int id){
+
+
+    void hit(int id)throws IOException{
         int value =board[id];
+        String filePath = "Score.txt";
         if(value==1)
         {
             score++;
@@ -195,10 +217,14 @@ public class Game extends JFrame implements ActionListener{
             score--;
         }
         lblScore.setText("Score:" +score);
+        FileWriter writer = new FileWriter(filePath);
+        writer.write(score);
+        writer.close();
         clearBoard();
         popUp();
     }
     void gameOver(){
+
         btn2.setEnabled(true);
         if(score > highscore){
             highscore = score;
