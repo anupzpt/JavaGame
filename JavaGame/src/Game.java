@@ -173,7 +173,6 @@ public class Game extends JFrame implements ActionListener{
                 timer.start();
             }
         });
-
         timer = new Timer(500, new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 if(timeLeft == 0){
@@ -321,24 +320,58 @@ public class Game extends JFrame implements ActionListener{
         }
     }
     void popUp(){
-//    try {
-//        int img_nos =16;
-//        Random random = new Random();
-//        int number = random.nextInt(img_nos);
-//        String img = String.valueOf(images[number]);
-//        int element = (int) (Math.random() * img_nos);
-//        holes[element].setIcon(moleImage(img));
-//        board[element]=1;
-//    }
-//    catch(ArrayIndexOutOfBoundsException e)
-//        {
+    try {
+        int img_nos =16;
+        Random random = new Random();
+        int element;
+        do {
+            element = (int) (Math.random() * img_nos) % holes.length;
+        } while (board[element] == 1);
+        int number = random.nextInt(img_nos) % images.length;
+        String img = String.valueOf(images[number]);
+        holes[element].setIcon(moleImage(img));
+        board[element] = 1;
+
+    }
+    catch(ArrayIndexOutOfBoundsException e)
+        {
+            e.printStackTrace();
+        }
+
+//        Random rnd = new Random(System.currentTimeMillis());
+//        int moleID = rnd.nextInt(16);
+//        board[moleID]=1;
+//        holes[moleID].setIcon(moleImage("/mole2.png"));
+    }
+//private Timer moleTimer;
+//    void popUp() {
+//        try {
+//            Random random = new Random();
+//            int element;
+//            do {
+//                element = random.nextInt(holes.length);
+//            } while (board[element] == 1);
+//
+//            int number = random.nextInt(images.length);
+//            String img = String.valueOf(images[number]);
+//            holes[element].setIcon(moleImage(img));
+//            board[element] = 1;
+//
+//            // Schedule the disappearance of the mole after a certain delay
+//            int finalElement = element;
+//            moleTimer = new Timer(moleDuration, e -> {
+//                holes[finalElement].setIcon(null);
+//                board[finalElement] = 0;
+//            });
+//            moleTimer.setRepeats(false);
+//            moleTimer.start();
+//        } catch (ArrayIndexOutOfBoundsException e) {
 //            e.printStackTrace();
 //        }
-        Random rnd = new Random(System.currentTimeMillis());
-        int moleID = rnd.nextInt(16);
-        board[moleID]=1;
-        holes[moleID].setIcon(moleImage("/mole2.png"));
-    }
+//    }
+//
+//    private int moleDuration = 2000; // in milliseconds
+
     private ImageIcon moleImage(String path){
         try{
             Image mole_image = new ImageIcon(this.getClass().getResource(path)).getImage();
@@ -360,7 +393,7 @@ public class Game extends JFrame implements ActionListener{
             Game();
         }
         else if (e.getSource() == btn2){
-            popUp();
+//            popUp();
         }
         else{
             System.out.println("No button clicked");
