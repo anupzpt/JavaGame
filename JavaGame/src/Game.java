@@ -29,16 +29,15 @@ public class Game extends JFrame implements ActionListener{
     };
     JPanel panel=new JPanel(new GridLayout(4,4));
     JLabel[] holes = new JLabel[16];
+    int[] board =new int[16];
     JButton btn = new JButton();
     JButton btn2 = new JButton();
     JLabel Title = new JLabel();
     JLabel scoreField = new JLabel();
+    int score=0;
+    JLabel lblScore =new JLabel();
     JTextField tf =  new JTextField();
     ImageIcon[] images = new ImageIcon[] {new ImageIcon("Mole.png"), new ImageIcon("Mole2.png"),new ImageIcon("Mole3.png"),new ImageIcon("Mole4.png"),new ImageIcon("Mole5.png"),new ImageIcon("Mole6.png"),new ImageIcon("Mole8.png"),new ImageIcon("Mole9.png"),new ImageIcon("Mole11.png"),new ImageIcon("Mole12.png")};
-
-
-
-
 
     void start(){
         //creates a starting frame
@@ -47,8 +46,6 @@ public class Game extends JFrame implements ActionListener{
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setBounds(100,100,608,720);
-
-
 
         container2.setBorder(new EmptyBorder(5,5,5,5));
         container2.setLayout(null);
@@ -85,18 +82,17 @@ public class Game extends JFrame implements ActionListener{
         setLocationRelativeTo(null);
         setBounds(100, 100, 608, 720);
 
-
         //background or container for the game
         container.setBackground(Color.GREEN);
         container.setBorder(new EmptyBorder(5,5,5,5));
         container.setLayout(null);
 
         //Score label
-        scoreField.setText("Score:");
-        scoreField.setFont(new Font("Century Gothic",Font.BOLD,25));
-        scoreField.setBounds(400,70,100,30);
-        scoreField.setForeground(Color.YELLOW);
-        container.add(scoreField);
+//        scoreField.setText("Score:");
+//        scoreField.setFont(new Font("Century Gothic",Font.BOLD,25));
+//        scoreField.setBounds(400,70,100,30);
+//        scoreField.setForeground(Color.YELLOW);
+//        container.add(scoreField);
 
         //text-field
         tf.setBounds(475,70,50,30);
@@ -110,8 +106,6 @@ public class Game extends JFrame implements ActionListener{
         btn2.addActionListener(this);
         container.add(btn2);
 
-
-
         //title set
         JLabel Title = new JLabel("Whack-A-Mole");
         Title.setForeground(new Color(225, 192, 23, 255));
@@ -123,13 +117,11 @@ public class Game extends JFrame implements ActionListener{
         //add title
         container.add(Title);
 
-
-
         //function call
         panel();
         holes();
-
-
+        clearBoard();
+        event();
 
         setVisible(true);
         //replaces the content pane of the frame with the specified container
@@ -232,25 +224,64 @@ public class Game extends JFrame implements ActionListener{
 
         for(int i = 0; i < 16; i++){
             holes[i].setIcon(loadImage("/moleIn.png"));
+            board[i] = 0;
         }
 
+    }
+    void clearBoard(){
+        for(int i=0; i<16;i++)
+        {
+            holes[i].setIcon(loadImage("/moleIn.png"));
+            board[i]=0;
+        }
+    }
+    void hit(int id){
+        int value =board[id];
+        if(value==1)
+        {
+            score++;
+        }
+        else{
+            score--;
+        }
+        lblScore.setText("Score:" +score);
+        clearBoard();
+        popUp();
+    }
+    void event(){
+        for(int i=0;i< holes.length;i++)
+        {
+            JLabel lbl = holes[i];
+            lbl.setName(Integer.toString(i));
+            lbl.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    JLabel lbl =(JLabel)e.getSource();
+                    int id =Integer.parseInt(lbl.getName());
+                    hit(id);
+                }
+            });
+        }
     }
     void popUp(){
-        //int element = (int) (Math.random() * 16);
+//    try {
+//        int img_nos =16;
+//        Random random = new Random();
+//        int number = random.nextInt(img_nos);
+//        String img = String.valueOf(images[number]);
+//        int element = (int) (Math.random() * img_nos);
+//        holes[element].setIcon(moleImage(img));
+//        board[element]=1;
+//    }
+//    catch(ArrayIndexOutOfBoundsException e)
+//        {
+//            e.printStackTrace();
+//        }
 
-    try {
-        int img_nos =16;
-        Random random = new Random();
-        int number = random.nextInt(img_nos);
-        String img = String.valueOf(images[number]);
-
-        int element = (int) (Math.random() * img_nos);
-        holes[element].setIcon(moleImage(img));
-    }
-    catch(ArrayIndexOutOfBoundsException e)
-        {
-            e.printStackTrace();
-        }
+        Random rnd = new Random(System.currentTimeMillis());
+        int moleID = rnd.nextInt(16);
+        board[moleID]=1;
+        holes[moleID].setIcon(moleImage("/mole2.png"));
     }
     private ImageIcon moleImage(String path){
         try{
@@ -264,7 +295,6 @@ public class Game extends JFrame implements ActionListener{
         }
 
     }
-
     private ImageIcon loadImage(String path){
         Image image = new ImageIcon(this.getClass().getResource(path)).getImage();
         Image scaled = image.getScaledInstance(132,132 , Image.SCALE_SMOOTH);
