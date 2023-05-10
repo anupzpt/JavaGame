@@ -10,7 +10,7 @@ import java.lang.String;
 import java.awt.Toolkit;
 import java.awt.Cursor;
 import java.awt.Point;
-
+import javax.swing.JOptionPane;
 
 public class Game extends JFrame implements ActionListener{
     JPanel container = new JPanel(){
@@ -33,11 +33,18 @@ public class Game extends JFrame implements ActionListener{
     JButton btn = new JButton();
     JButton btn2 = new JButton();
     JLabel Title = new JLabel();
-    JLabel scoreField = new JLabel();
+//    JLabel scoreField = new JLabel("Score : 0");
     int score=0;
-    JLabel lblScore =new JLabel();
+    int timeLeft =30;
+    int highscore =0;
+    JLabel lblScore =new JLabel("Score : 0");
+    JLabel lblTimeLeft;
+    JLabel lblHighscore;
+    Timer timer;
     JTextField tf =  new JTextField();
+
     ImageIcon[] images = new ImageIcon[] {new ImageIcon("Mole.png"), new ImageIcon("Mole2.png"),new ImageIcon("Mole3.png"),new ImageIcon("Mole4.png"),new ImageIcon("Mole5.png"),new ImageIcon("Mole6.png"),new ImageIcon("Mole8.png"),new ImageIcon("Mole9.png"),new ImageIcon("Mole11.png"),new ImageIcon("Mole12.png")};
+    private ActionEvent e;
 
     void start(){
         //creates a starting frame
@@ -51,7 +58,7 @@ public class Game extends JFrame implements ActionListener{
         container2.setLayout(null);
 
         btn.setBackground(Color.YELLOW);
-        btn.setText("Start");
+        btn.setText("Play Game");
         btn.setFont(new Font("Century Gothic", Font.BOLD,25));
         btn.setBorder(null);
         btn.setBounds(150,425,300,60);
@@ -69,12 +76,12 @@ public class Game extends JFrame implements ActionListener{
 
         container2.add(Title);
 
-
         setVisible(true);
         setContentPane(container2);
 
     }
-    void Game(){
+    void initialGame()
+    {
         //creates frame
         setTitle("!!! Whack A Mole !!!");
         setResizable(false);
@@ -88,15 +95,17 @@ public class Game extends JFrame implements ActionListener{
         container.setLayout(null);
 
         //Score label
-//        scoreField.setText("Score:");
-//        scoreField.setFont(new Font("Century Gothic",Font.BOLD,25));
-//        scoreField.setBounds(400,70,100,30);
-//        scoreField.setForeground(Color.YELLOW);
-//        container.add(scoreField);
+//        scoreField.setText("Score:0");
+        lblScore.setHorizontalAlignment(SwingConstants.TRAILING);
+        lblScore.setFont(new Font("Century Gothic",Font.BOLD,25));
+        lblScore.setBounds(423,54,144,33);
+        lblScore.setForeground(new Color(135,206,250));
+        lblScore.setBackground(Color.GREEN);
+        container.add(lblScore);
 
         //text-field
-        tf.setBounds(475,70,50,30);
-        container.add(tf);
+//        tf.setBounds(480,50,80,30);
+//        container.add(tf);
 
         btn2.setText("Start");
         btn2.setBounds(20,70,100,30);
@@ -108,26 +117,103 @@ public class Game extends JFrame implements ActionListener{
 
         //title set
         JLabel Title = new JLabel("Whack-A-Mole");
-        Title.setForeground(new Color(225, 192, 23, 255));
+        Title.setForeground(new Color(245, 216, 6, 247));
         Title.setHorizontalAlignment(SwingConstants.CENTER);
-        Title.setFont(new Font("Century Gothic",Font.BOLD,50));
+        Title.setFont(new Font("Century Gothic",Font.BOLD,30));
         Title.setBackground(Color.GREEN);
         Title.setBounds(0,15,602,47);
 
+        lblTimeLeft = new JLabel("30");
+        lblTimeLeft.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTimeLeft.setForeground(new Color(135,206,250));
+        lblTimeLeft.setBackground(Color.GREEN);
+        lblTimeLeft.setFont(new Font("Cambria Math", Font.BOLD, 24));
+        lblTimeLeft.setBounds(232,75,144,33);
+        container.add(lblTimeLeft);
+
+        lblHighscore = new JLabel("Highscore: 0");
+        lblHighscore.setHorizontalAlignment(SwingConstants.TRAILING);
+        lblHighscore.setForeground(new Color(135,206,250));
+        lblHighscore.setFont(new Font("Cambria", Font.BOLD, 20));
+        lblHighscore.setBounds(433, 18, 134, 33);
+        container.add(lblHighscore);
         //add title
         container.add(Title);
-
-        //function call
-        panel();
-        holes();
-        clearBoard();
-        event();
-
         setVisible(true);
         //replaces the content pane of the frame with the specified container
         setContentPane(container);
     }
+    void Game(){
+        //function call
+        initialGame();
+        panel();
+        holes();
+        clearBoard();
+        event();
+    }
+    void event(){
+        for(int i=0;i< holes.length;i++)
+        {
+            JLabel lbl = holes[i];
+            lbl.setName(Integer.toString(i));
+            lbl.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    JLabel lbl =(JLabel)e.getSource();
+                    int id =Integer.parseInt(lbl.getName());
+                    hit(id);
+                }
+            });
+        }
+        btn2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                btn2.setEnabled(false);
+                clearBoard();
+                popUp();
+                timer.start();
+            }
+        });
 
+        timer = new Timer(500, new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if(timeLeft == 0){
+                    lblTimeLeft.setText("" + timeLeft);
+                    timer.stop();
+                    gameOver();
+                }
+                lblTimeLeft.setText("" + timeLeft);
+                timeLeft--;
+            }
+        });
+    }
+    void hit(int id){
+        int value =board[id];
+        if(value==1)
+        {
+            score++;
+        }
+        else{
+            score--;
+        }
+        lblScore.setText("Score:" +score);
+        clearBoard();
+        popUp();
+    }
+    void gameOver(){
+        btn2.setEnabled(true);
+        if(score > highscore){
+            highscore = score;
+            lblHighscore.setText("Highscore: " + highscore);
+            JOptionPane.showMessageDialog(this, "Your final score is: " + score, "You beat the high score!", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Your final score is: " + score, "Game Over!", JOptionPane.INFORMATION_MESSAGE);
+        }
+        score = 0;
+        timeLeft = 30;
+        lblScore.setText("Score: 0");
+        lblTimeLeft.setText("30");
+        clearBoard();
+    }
     void panel(){
         try{
             panel.setBackground(new Color(0, 100, 0));
@@ -226,41 +312,12 @@ public class Game extends JFrame implements ActionListener{
             holes[i].setIcon(loadImage("/moleIn.png"));
             board[i] = 0;
         }
-
     }
     void clearBoard(){
         for(int i=0; i<16;i++)
         {
             holes[i].setIcon(loadImage("/moleIn.png"));
             board[i]=0;
-        }
-    }
-    void hit(int id){
-        int value =board[id];
-        if(value==1)
-        {
-            score++;
-        }
-        else{
-            score--;
-        }
-        lblScore.setText("Score:" +score);
-        clearBoard();
-        popUp();
-    }
-    void event(){
-        for(int i=0;i< holes.length;i++)
-        {
-            JLabel lbl = holes[i];
-            lbl.setName(Integer.toString(i));
-            lbl.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    JLabel lbl =(JLabel)e.getSource();
-                    int id =Integer.parseInt(lbl.getName());
-                    hit(id);
-                }
-            });
         }
     }
     void popUp(){
@@ -277,7 +334,6 @@ public class Game extends JFrame implements ActionListener{
 //        {
 //            e.printStackTrace();
 //        }
-
         Random rnd = new Random(System.currentTimeMillis());
         int moleID = rnd.nextInt(16);
         board[moleID]=1;
@@ -293,15 +349,12 @@ public class Game extends JFrame implements ActionListener{
             e.printStackTrace();
             return null;
         }
-
     }
     private ImageIcon loadImage(String path){
         Image image = new ImageIcon(this.getClass().getResource(path)).getImage();
         Image scaled = image.getScaledInstance(132,132 , Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
     }
-
-
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btn){
             Game();
