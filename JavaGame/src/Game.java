@@ -76,7 +76,6 @@ public class Game extends JFrame implements ActionListener{
 
         container2.add(Title);
 
-
         setVisible(true);
         setContentPane(container2);
 
@@ -92,7 +91,6 @@ public class Game extends JFrame implements ActionListener{
 
         //background or container for the game
         container.setBackground(Color.GREEN);
-
         container.setBorder(new EmptyBorder(5,5,5,5));
         container.setLayout(null);
 
@@ -152,8 +150,6 @@ public class Game extends JFrame implements ActionListener{
         holes();
         clearBoard();
         event();
-
-
     }
     void event(){
         for(int i=0;i< holes.length;i++)
@@ -216,17 +212,14 @@ public class Game extends JFrame implements ActionListener{
         timeLeft = 30;
         lblScore.setText("Score: 0");
         lblTimeLeft.setText("30");
-
         clearBoard();
     }
-
     void panel(){
         try{
             panel.setBackground(new Color(0, 100, 0));
             panel.setBounds(32, 105, 528, 528);
             panel.setLayout(null);
             container.add(panel);
-
         }
         catch(NullPointerException e)
         {
@@ -319,7 +312,6 @@ public class Game extends JFrame implements ActionListener{
             holes[i].setIcon(loadImage("/moleIn.png"));
             board[i] = 0;
         }
-
     }
     void clearBoard(){
         for(int i=0; i<16;i++)
@@ -328,8 +320,6 @@ public class Game extends JFrame implements ActionListener{
             board[i]=0;
         }
     }
-
-
     void popUp(){
 //    try {
 //        int img_nos =16;
@@ -344,7 +334,6 @@ public class Game extends JFrame implements ActionListener{
 //        {
 //            e.printStackTrace();
 //        }
-
         Random rnd = new Random(System.currentTimeMillis());
         int moleID = rnd.nextInt(16);
         board[moleID]=1;
@@ -360,14 +349,12 @@ public class Game extends JFrame implements ActionListener{
             e.printStackTrace();
             return null;
         }
-
     }
     private ImageIcon loadImage(String path){
         Image image = new ImageIcon(this.getClass().getResource(path)).getImage();
         Image scaled = image.getScaledInstance(132,132 , Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
     }
-
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btn){
             Game();
@@ -379,9 +366,5 @@ public class Game extends JFrame implements ActionListener{
             System.out.println("No button clicked");
         }
     }
-
-
-
-
 }
 
