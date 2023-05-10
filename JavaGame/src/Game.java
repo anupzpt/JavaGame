@@ -12,13 +12,16 @@ import java.awt.Cursor;
 import java.awt.Point;
 import javax.swing.JOptionPane;
 
+
 public class Game extends JFrame implements ActionListener{
+    public int check=0;
     JPanel container = new JPanel(){
         protected void paintComponent(Graphics g){
             super.paintComponents(g);
             Image image = new ImageIcon(this.getClass().getResource("/Background.png")).getImage();
             g.drawImage(image,0,0,this.getWidth(),this.getHeight(),this);
         }
+
     };
     JPanel container2 = new JPanel(){
         protected void paintComponent(Graphics g){
@@ -28,6 +31,7 @@ public class Game extends JFrame implements ActionListener{
         }
     };
     JPanel panel=new JPanel(new GridLayout(4,4));
+
     JLabel[] holes = new JLabel[16];
     int[] board =new int[16];
     JButton btn = new JButton();
@@ -47,6 +51,10 @@ public class Game extends JFrame implements ActionListener{
     private ActionEvent e;
 
     void start(){
+//        ImageIcon hammerIcon = new ImageIcon(loadImage("/Hammer.png").getImage().getScaledInstance(150, 200, Image.SCALE_SMOOTH));
+//        Cursor hammerCursor = Toolkit.getDefaultToolkit().createCustomCursor(hammerIcon.getImage(), new Point(0,0), "custom cursor");
+//        panel.setCursor(hammerCursor);
+       panel.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(loadImage("/Hammer.png").getImage(),new Point(0,0),"custom cursor"));
         //creates a starting frame
         setTitle("!!! Whack A Mole !!!");
         setResizable(false);
@@ -150,6 +158,7 @@ public class Game extends JFrame implements ActionListener{
         holes();
         clearBoard();
         event();
+
     }
     void event(){
         for(int i=0;i< holes.length;i++)
@@ -186,17 +195,17 @@ public class Game extends JFrame implements ActionListener{
         });
     }
     void hit(int id){
-        int value =board[id];
-        if(value==1)
-        {
-            score++;
+        if(check==1) {
+            int value = board[id];
+            if (value == 1) {
+                score++;
+            } else {
+                score--;
+            }
+            lblScore.setText("Score:" + score);
+            clearBoard();
+            popUp();
         }
-        else{
-            score--;
-        }
-        lblScore.setText("Score:" +score);
-        clearBoard();
-        popUp();
     }
     void gameOver(){
         btn2.setEnabled(true);
@@ -219,6 +228,10 @@ public class Game extends JFrame implements ActionListener{
             panel.setBounds(32, 105, 528, 528);
             panel.setLayout(null);
             container.add(panel);
+
+//            panel.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+//                    loadImage("/hammer.png").getImage(),
+//                    new Point(0,0),"custom cursor1"));
         }
         catch(NullPointerException e)
         {
@@ -320,57 +333,27 @@ public class Game extends JFrame implements ActionListener{
         }
     }
     void popUp(){
-    try {
-        int img_nos =16;
-        Random random = new Random();
-        int element;
-        do {
-            element = (int) (Math.random() * img_nos) % holes.length;
-        } while (board[element] == 1);
-        int number = random.nextInt(img_nos) % images.length;
-        String img = String.valueOf(images[number]);
-        holes[element].setIcon(moleImage(img));
-        board[element] = 1;
-
-    }
-    catch(ArrayIndexOutOfBoundsException e)
+        try {
+            int img_nos =16;
+            Random random = new Random();
+            int element;
+            do {
+                element = (int) (Math.random() * img_nos) % holes.length;
+            } while (board[element] == 1);
+            int number = random.nextInt(img_nos) % images.length;
+            String img = String.valueOf(images[number]);
+            holes[element].setIcon(moleImage(img));
+            board[element] = 1;
+        }
+        catch(ArrayIndexOutOfBoundsException e)
         {
             e.printStackTrace();
         }
-
 //        Random rnd = new Random(System.currentTimeMillis());
 //        int moleID = rnd.nextInt(16);
 //        board[moleID]=1;
 //        holes[moleID].setIcon(moleImage("/mole2.png"));
     }
-//private Timer moleTimer;
-//    void popUp() {
-//        try {
-//            Random random = new Random();
-//            int element;
-//            do {
-//                element = random.nextInt(holes.length);
-//            } while (board[element] == 1);
-//
-//            int number = random.nextInt(images.length);
-//            String img = String.valueOf(images[number]);
-//            holes[element].setIcon(moleImage(img));
-//            board[element] = 1;
-//
-//            // Schedule the disappearance of the mole after a certain delay
-//            int finalElement = element;
-//            moleTimer = new Timer(moleDuration, e -> {
-//                holes[finalElement].setIcon(null);
-//                board[finalElement] = 0;
-//            });
-//            moleTimer.setRepeats(false);
-//            moleTimer.start();
-//        } catch (ArrayIndexOutOfBoundsException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private int moleDuration = 2000; // in milliseconds
 
     private ImageIcon moleImage(String path){
         try{
@@ -393,7 +376,7 @@ public class Game extends JFrame implements ActionListener{
             Game();
         }
         else if (e.getSource() == btn2){
-//            popUp();
+            check=1;
         }
         else{
             System.out.println("No button clicked");

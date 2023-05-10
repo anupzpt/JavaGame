@@ -7,6 +7,14 @@
     <list default="true" id="6219122a-b102-45a5-a7f1-700a252b8829" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JavaGame/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaGame/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaGame/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaGame/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,35 +72,18 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/JavaGame/src/Game.java</url>
-          <line>228</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/JavaGame/src/Game.java</url>
-          <line>149</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/JavaGame/src/Game.java</url>
-          <line>156</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/JavaGame/src/Game.java</url>
-          <line>351</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/JavaGame/src/Main.java</url>
-          <line>2</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/JavaGame_main$Main.ic" NAME="Main Coverage Results" MODIFIED="1683738836943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
