@@ -141,7 +141,7 @@ public class Game extends JFrame implements ActionListener{
 
         lblHighscore = new JLabel("Highscore: 0");
         lblHighscore.setHorizontalAlignment(SwingConstants.TRAILING);
-        lblHighscore.setForeground(new Color(135,206,250));
+        lblHighscore.setForeground(new Color(152, 209, 245));
         lblHighscore.setFont(new Font("Cambria", Font.BOLD, 20));
         lblHighscore.setBounds(433, 35, 134, 33);
         container.add(lblHighscore);
