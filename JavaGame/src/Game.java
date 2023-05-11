@@ -106,7 +106,7 @@ public class Game extends JFrame implements ActionListener{
 //        scoreField.setText("Score:0");
         lblScore.setHorizontalAlignment(SwingConstants.TRAILING);
         lblScore.setFont(new Font("Century Gothic",Font.BOLD,25));
-        lblScore.setBounds(423,54,144,33);
+        lblScore.setBounds(423,68,144,33);
         lblScore.setForeground(new Color(135,206,250));
         lblScore.setBackground(Color.GREEN);
         container.add(lblScore);
@@ -143,7 +143,7 @@ public class Game extends JFrame implements ActionListener{
         lblHighscore.setHorizontalAlignment(SwingConstants.TRAILING);
         lblHighscore.setForeground(new Color(135,206,250));
         lblHighscore.setFont(new Font("Cambria", Font.BOLD, 20));
-        lblHighscore.setBounds(433, 18, 134, 33);
+        lblHighscore.setBounds(433, 35, 134, 33);
         container.add(lblHighscore);
         //add title
         container.add(Title);
@@ -371,6 +371,7 @@ public class Game extends JFrame implements ActionListener{
         Image scaled = image.getScaledInstance(132,132 , Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
     }
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btn){
             Game();
