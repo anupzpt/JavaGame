@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6219122a-b102-45a5-a7f1-700a252b8829" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaGame/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaGame/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaGame/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/JavaGame/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaGame-main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaGame-main/Main.class" afterDir="false" />
-    </list>
+    <list default="true" id="6219122a-b102-45a5-a7f1-700a252b8829" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
